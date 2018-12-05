@@ -1,0 +1,3 @@
+[1204/151259.675:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir6368_998\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
+[1204/151601.877:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir25148_21139\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
+[1204/160125.087:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir12968_11300\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
