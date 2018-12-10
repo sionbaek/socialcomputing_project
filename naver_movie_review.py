@@ -59,8 +59,7 @@ with open('./movie_genre_korea.csv', 'r') as csvfile:
 d.get('https://movie.naver.com/')
 
 for movie in movie_list:
-    # title=movie[0]
-    title="거미줄에 걸린 소녀"
+    title=movie[0]
     genre=movie[1]
 
     movie_input=d.find_element_by_xpath('//*[@id="ipt_tx_srch"]')
