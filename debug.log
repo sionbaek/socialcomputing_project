@@ -1,3 +1,13 @@
 [1204/151259.675:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir6368_998\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
 [1204/151601.877:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir25148_21139\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
 [1204/160125.087:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir12968_11300\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
+[1210/144821.999:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[1210/144822.003:ERROR:exception_snapshot_win.cc(88)] thread ID 10488 not found in process
+[1210/144822.013:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[1210/144822.015:ERROR:exception_snapshot_win.cc(88)] thread ID 20372 not found in process
+[1210/144822.017:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[1210/144822.018:ERROR:exception_snapshot_win.cc(88)] thread ID 16164 not found in process
+[1210/144822.021:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[1210/144822.024:ERROR:exception_snapshot_win.cc(88)] thread ID 29308 not found in process
+[1210/144822.036:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[1210/144822.038:ERROR:exception_snapshot_win.cc(88)] thread ID 7700 not found in process
