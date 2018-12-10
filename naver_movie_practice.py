@@ -22,19 +22,26 @@ d = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=option
 # d = webdriver.Chrome(executable_path='./chromedriver.exe')
 d.implicitly_wait(3)
 
-with open('./movie_genre_korea.csv', 'r') as csvfile:
-    list_reader=csv.reader(csvfile, delimiter=',')
+with open('./popularmovie_2015-2017.csv', 'r') as csvfile:
+    list_reader=csv.DictReader(csvfile, delimiter=',')
+    header = list_reader.fieldnames
     movie_list=list(list_reader)
+
+print(header)
+print(movie_list)
 
 d.get('https://movie.naver.com/')
 
 for movie in movie_list:
+    title=movie['영화명']
+    genre=movie['장르']
+
     movie_input=d.find_element_by_xpath('//*[@id="ipt_tx_srch"]')
     d.execute_script('''
         var movie_input=arguments[0];
         var value=arguments[1];
         movie_input.value=value;
-        ''', movie_input, movie[0])
+        ''', movie_input, title)
     d.find_element_by_xpath('//*[@class="btn_srch"]').click()
     sleep(2)
     d.find_element_by_xpath('//*[@class="search_list_1"][1]/li[1]/p/a').click()

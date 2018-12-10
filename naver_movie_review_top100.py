@@ -15,7 +15,8 @@ def get_page_num():
 
     return page_num
 
-def get_reviews(page_num, released, genre):
+def get_reviews(page_num, released, header, movie_info):
+    # page_num=1
     result=list()
     for j in range(1, page_num+1):
         sleep(2)
@@ -32,7 +33,10 @@ def get_reviews(page_num, released, genre):
                 review=d.find_element_by_xpath(review_xpath).text
                 re_time=d.find_element_by_xpath(time_xpath).text
                 print("score: {}, review: {}, time:{}".format(score, review, re_time))
-                result.append({'score':score, 'review':review, 'time':re_time, 'released':released, 'genre':genre})
+                result_dict={'score':score, 'review':review, 'time':re_time, 'released':released}
+                for info in header:
+                    result_dict[info]=movie_info[info]
+                result.append(result_dict)
             except:
                 print("no xpath found")
                 pass
@@ -52,15 +56,15 @@ d = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=option
 # d = webdriver.Chrome(executable_path='./chromedriver.exe')
 d.implicitly_wait(3)
 
-with open('./movie_genre_korea.csv', 'r') as csvfile:
-    list_reader=csv.reader(csvfile, delimiter=',')
+with open('./popularmovie_2015-2017.csv', 'r') as csvfile:
+    list_reader=csv.DictReader(csvfile, delimiter=',')
     movie_list=list(list_reader)
+    header = list_reader.fieldnames
 
 d.get('https://movie.naver.com/')
 
 for movie in movie_list:
-    title=movie[0]
-    genre=movie[1]
+    title=movie['영화명']
 
     movie_input=d.find_element_by_xpath('//*[@id="ipt_tx_srch"]')
     d.execute_script('''
@@ -84,7 +88,7 @@ for movie in movie_list:
     # page 내부, 네티즌 댓글 전용 iframe 들어가기
     d.switch_to.frame("pointAfterListIframe")
     page_num=get_page_num()
-    result=get_reviews(page_num, True, genre)
+    result=get_reviews(page_num, True, header, movie)
 
     #개봉 전 받아오기
     d.switch_to.default_content()
@@ -92,14 +96,14 @@ for movie in movie_list:
 
     d.switch_to.frame("pointAfterListIframe")
     page_num2=get_page_num()
-    result2=get_reviews(page_num2, False, genre)
+    result2=get_reviews(page_num2, False, header, movie)
 
     # 기본으로 되돌리기
     d.switch_to.default_content()
 
     # csv로 저장
-    with open('./review_{}_{}.csv'.format(genre, movie_title), 'w', encoding='utf8') as csvfile:
-        fieldnames=["score", "review", "time", "released", "genre"]
+    with open('./review_top100_{}.csv'.format(movie_title), 'w', encoding='utf8') as csvfile:
+        fieldnames=["score", "review", "time", "released"]+header
         writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
