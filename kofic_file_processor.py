@@ -33,15 +33,20 @@ def main(file): #process given html file into csv
     dat = [np.asarray(t) for t in data]
     df = pd.DataFrame(data=dat,columns=headers)
     file_name = date[:8]+".csv" 
-    # os.chdir(path/to/my/directory)
+    os.chdir("C:\GitHub\socialcomputing_project\\processed")
     df.to_csv(file_name,encoding="utf-8",index=False)
+    os.chdir("C:\GitHub\socialcomputing_project\\file")
 
 # file = "a.xls"
 # main(file)
 
 import os 
-os.chdir("C:\GitHub\socialcomputing_project\\병아리")
+os.chdir("C:\GitHub\socialcomputing_project\\file")
+i = 0
 for filename in os.listdir(os.getcwd()):  
-    print(filename)
+    print(filename, i)
+    i = i+1 
     main(filename)
+
+
     
