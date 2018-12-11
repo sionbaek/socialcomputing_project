@@ -11,7 +11,8 @@ import os
 def get_page_num():
     review_num=d.find_element_by_xpath('//*[@class="score_total"]/strong/em').text
     review_num=review_num.replace(",","")
-    page_num=(int(review_num)//10) + 1
+    page_num=(int(review_num-1)//10) + 1
+    page_num= page_num if page_num>=1 else 1
 
     return page_num
 
@@ -36,7 +37,15 @@ def get_reviews(page_num, released, genre):
             except:
                 print("no xpath found")
                 pass
-    return result
+
+        if j%10==0 or j==page_num
+            with open('./review_{}_{}.csv'.format(genre, movie_title), 'a', encoding='utf8') as csvfile:
+                fieldnames=["score", "review", "time", "released", "genre"]
+                writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                for l in range(len(result)):
+                    writer.writerow(result[l])
+                result=list()
 
 
 #WINDOWS OS
@@ -80,11 +89,18 @@ for movie in movie_list:
     print(movie_title)
     movie_title.replace(":", "_")
 
+    #csvfile 만들기
+    with open('./review_{}_{}.csv'.format(genre, movie_title), 'w', encoding='utf8') as csvfile:
+        fieldnames=["score", "review", "time", "released", "genre"]
+        writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+
     # 개봉 후 평점 받아오기, 한 페이지에 열 개
     # page 내부, 네티즌 댓글 전용 iframe 들어가기
     d.switch_to.frame("pointAfterListIframe")
     page_num=get_page_num()
-    result=get_reviews(page_num, True, genre)
+    get_reviews(page_num, True, genre)
 
     #개봉 전 받아오기
     d.switch_to.default_content()
@@ -92,21 +108,11 @@ for movie in movie_list:
 
     d.switch_to.frame("pointAfterListIframe")
     page_num2=get_page_num()
-    result2=get_reviews(page_num2, False, genre)
+    get_reviews(page_num2, False, genre)
 
     # 기본으로 되돌리기
     d.switch_to.default_content()
 
-    # csv로 저장
-    with open('./review_{}_{}.csv'.format(genre, movie_title), 'w', encoding='utf8') as csvfile:
-        fieldnames=["score", "review", "time", "released", "genre"]
-        writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        writer.writeheader()
-        for i in range(len(result)):
-            writer.writerow(result[i])
-        for j in range(len(result2)):
-            writer.writerow(result2[j])
 
 # d.get('https://movie.naver.com/movie/bi/mi/basic.nhn?code=167638') #167638
 
