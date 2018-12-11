@@ -32,14 +32,14 @@ def get_reviews(page_num, released, genre):
                 print("no xpath found")
                 pass
 
-        if j%10==0 or j==page_num: 
+        if j%10==0 or j==page_num:
             with open('./review_{}_{}.csv'.format(genre, movie_title), 'a', encoding='utf8') as csvfile:
                 fieldnames=["score", "review", "time", "released", "genre"]
                 writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
 
                 for l in range(len(result)):
                     writer.writerow(result[l])
-                result=list()
+            result=list()
 
 
 #WINDOWS OS
