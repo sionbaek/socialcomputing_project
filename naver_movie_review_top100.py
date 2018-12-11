@@ -65,7 +65,7 @@ d = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=option
 # d = webdriver.Chrome(executable_path='./chromedriver.exe')
 d.implicitly_wait(3)
 
-with open('./popularmovie_2015-2017.csv', 'r') as csvfile:
+with open('./popularmovie_2015-2017.csv', 'r',encoding='utf-8') as csvfile:
     list_reader=csv.DictReader(csvfile, delimiter=',')
     movie_list=list(list_reader)
     header = list_reader.fieldnames

@@ -35,9 +35,9 @@ for elem in title:
     
 postprocessor = Postprocessor(twitter, ngrams = ngrams)
 #read_review_data
-sentences = ['황정민이 굿바이 싱글에 출연해 큰 호응을 얻었습니다',\
-             '겟 아웃은 김혜수가 출연하지 않았습니다'\
-             '너무너무 재미있어요! 감동적입니다']
+filename = 'review_액션_베테랑.csv'
+d = pd.read_csv('review_액션_베테랑.csv', engine='python', encoding='utf-8')
+sentences = d["review"]
 
 passtags = {'Adjective'}
 postprocessor = Postprocessor(twitter, passtags = passtags, ngrams=ngrams)
