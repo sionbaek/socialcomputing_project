@@ -32,7 +32,11 @@ def get_reviews(page_num, released, genre):
                 print("no xpath found")
                 pass
 
+<<<<<<< HEAD
         if j%10==0 or j==page_num:
+=======
+        if j%10==0 or j==page_num: 
+>>>>>>> 95be06508d65758124281b0bb6f0c56ccce3b340
             with open('./review_{}_{}.csv'.format(genre, movie_title), 'a', encoding='utf8') as csvfile:
                 fieldnames=["score", "review", "time", "released", "genre"]
                 writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -46,9 +50,9 @@ def get_reviews(page_num, released, genre):
 header = {'User-Agent': ''}
 
 options = webdriver.ChromeOptions()
-# options.add_argument('headless')
-# options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36")
-# options.add_argument('--incognito')
+options.add_argument('headless')
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36")
+options.add_argument('--incognito')
 
 d = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
 # d=webdriver.Chrome(executable_path='./chromedriver', chrome_options=options) #MAC OS인 경우 이걸로 하세요, 윗줄 주석 처리
