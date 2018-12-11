@@ -1,6 +1,12 @@
 from selenium import webdriver
+from bs4 import BeautifulSoup
 from time import sleep
+import requests
+import json
+import re
+from selenium.common.exceptions import NoSuchElementException,TimeoutException
 import csv
+import os
 
 def get_page_num():
     review_num=d.find_element_by_xpath('//*[@class="score_total"]/strong/em').text

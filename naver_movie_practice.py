@@ -4,7 +4,7 @@ from time import sleep
 import requests
 import json
 import re
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException,TimeoutException
 import csv
 import os
 
