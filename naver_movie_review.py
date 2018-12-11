@@ -1,12 +1,6 @@
 from selenium import webdriver
-from bs4 import BeautifulSoup
 from time import sleep
-import requests
-import json
-import re
-from selenium.common.exceptions import NoSuchElementException
 import csv
-import os
 
 def get_page_num():
     review_num=d.find_element_by_xpath('//*[@class="score_total"]/strong/em').text
@@ -56,7 +50,7 @@ options = webdriver.ChromeOptions()
 # options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36")
 # options.add_argument('--incognito')
 
-d = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
+d = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
 # d=webdriver.Chrome(executable_path='./chromedriver', chrome_options=options) #MAC OS인 경우 이걸로 하세요, 윗줄 주석 처리
 # d = webdriver.Chrome(executable_path='./chromedriver.exe')
 d.implicitly_wait(3)

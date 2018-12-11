@@ -52,3 +52,5 @@
 [1210/183203.308:ERROR:exception_snapshot_win.cc(88)] thread ID 21952 not found in process
 [1210/183451.076:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
 [1210/183451.077:ERROR:exception_snapshot_win.cc(88)] thread ID 4696 not found in process
+[1210/212941.304:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir27556_1444\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
+[1211/003951.450:ERROR:file_io_win.cc(179)] CreateFile C:\Users\Sion\AppData\Local\Temp\scoped_dir22876_18194\Crashpad\settings.dat: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다. (0x20)
