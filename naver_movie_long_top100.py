@@ -11,7 +11,8 @@ import os
 def get_longpage_num():
     review_num=d.find_element_by_xpath('//*[@class="cnt"]/em').text
     review_num=review_num.replace(",","")
-    page_num=(int(review_num)//10) + 1
+    page_num=((int(review_num)-1)//10) + 1
+    page_num= page_num if page_num>=1 else 1
 
     return page_num
 
@@ -56,7 +57,15 @@ def get_longreviews(page_num, header, movie_info):
             d.get(cur_url)
             sleep(2)
 
-    return result
+        if j%10==0 or j==page_num:
+            with open('./longreview_top100_{}.csv'.format(movie_title), 'a', encoding='utf8') as csvfile:
+                fieldnames=["score", "title", "review", "time"]+header
+                writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                for l in range(len(result)):
+                    writer.writerow(result[l])
+            result=list()
+
 
 
 #WINDOWS OS
@@ -72,7 +81,7 @@ d = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=option
 # d = webdriver.Chrome(executable_path='./chromedriver.exe')
 d.implicitly_wait(3)
 
-with open('./practice.csv', 'r') as csvfile:
+with open('./popularmovie_2015-2017.csv', 'r') as csvfile:
     list_reader=csv.DictReader(csvfile, delimiter=',')
     movie_list=list(list_reader)
     header = list_reader.fieldnames
@@ -101,20 +110,20 @@ for movie in movie_list:
     print(movie_title)
     movie_title.replace(":", "_")
 
-    page_num=get_longpage_num()
-    result=get_longreviews(page_num, header, movie)
-
-    # 기본으로 되돌리기
-    d.switch_to.default_content()
-
     # csv로 저장
     with open('./longreview_top100_{}.csv'.format(movie_title), 'w', encoding='utf8') as csvfile:
         fieldnames=["score", "title", "review", "time"]+header
         writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
-        for i in range(len(result)):
-            writer.writerow(result[i])
+
+    page_num=get_longpage_num()
+    get_longreviews(page_num, header, movie)
+
+    # 기본으로 되돌리기
+    d.switch_to.default_content()
+
+
 
 # d.get('https://movie.naver.com/movie/bi/mi/basic.nhn?code=167638') #167638
 

@@ -5,7 +5,7 @@ import csv
 def get_page_num():
     review_num=d.find_element_by_xpath('//*[@class="score_total"]/strong/em').text
     review_num=review_num.replace(",","")
-    page_num=(int(review_num-1)//10) + 1
+    page_num=((int(review_num)-1)//10) + 1
     page_num= page_num if page_num>=1 else 1
 
     return page_num
@@ -32,14 +32,14 @@ def get_reviews(page_num, released, genre):
                 print("no xpath found")
                 pass
 
-        if j%10==0 or j==page_num
+        if j%10==0 or j==page_num:
             with open('./review_{}_{}.csv'.format(genre, movie_title), 'a', encoding='utf8') as csvfile:
                 fieldnames=["score", "review", "time", "released", "genre"]
                 writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
 
                 for l in range(len(result)):
                     writer.writerow(result[l])
-                result=list()
+            result=list()
 
 
 #WINDOWS OS
