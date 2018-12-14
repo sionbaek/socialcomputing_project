@@ -12,7 +12,7 @@ header = {'User-Agent': ''}
 
 options = webdriver.ChromeOptions()
 # options.add_argument('headless')
-# options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36")
+# options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36")
 # options.add_argument('--incognito')
 
 d = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
@@ -29,6 +29,7 @@ url = [t.split(" /// ")[1] for t in b ]
 
 for t, u in zip(title,url):
     print(t)
+    t=t.replace(':', '-')
     d.get(u)
 
     #여러 번 load 하기
@@ -36,6 +37,7 @@ for t, u in zip(title,url):
     review_num=review_num.replace(' Reviews','')
     review_num=review_num.replace(',','')
     page_num=int(review_num)//25+1
+    print(review_num)
     print(page_num)
 
     for i in range(1, page_num+1):
