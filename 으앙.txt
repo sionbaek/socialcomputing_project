@@ -1,9 +1,0 @@
-r=requests.get(url)
-
-soup=BeautifulSoup(r.text, 'html.parser')
-
-list=soup.select('.rvw_list_area > li > a')
-
-list[0]['onclick'].split(';')[1]
-
-int(re.search('\d+',x)[0])
