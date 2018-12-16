@@ -13,13 +13,13 @@ with open('./get_long_reviews.csv', 'r') as csvfile:
     header = list_reader.fieldnames
 
 for movie in movie_list:
-    title=movie['영화명']
+    movie_title=movie['영화명']
     url=movie['url']
     page_num=int(movie['page_num'])
-    title.replace(":","_")
+    movie_title.replace(":","_")
 
     # csv로 저장
-    with open('./longreview_top100_{}.csv'.format(title), 'w', encoding='utf8') as csvfile:
+    with open('./longreview_top100_{}.csv'.format(movie_title), 'w', encoding='utf8') as csvfile:
         fieldnames=["score", "title", "review", "time"]+header
         writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -61,7 +61,7 @@ for movie in movie_list:
                 print("no star score")
 
         if i%10==0 or i==page_num:
-            with open('./longreview_top100_{}.csv'.format(title), 'a', encoding='utf8') as csvfile:
+            with open('./longreview_top100_{}.csv'.format(movie_title), 'a', encoding='utf8') as csvfile:
                 fieldnames=["score", "title", "review", "time"]+header
                 writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
                 for l in range(len(result)):
